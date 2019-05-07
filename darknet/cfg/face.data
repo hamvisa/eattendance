@@ -1,0 +1,7 @@
+classes= 3
+train  = /home/sahil/eattendance/darknet/data/face/face-train.txt
+valid  = /home/sahil/eattendance/darknet/data/face/face-test.txt
+names = /home/sahil/eattendance/darknet/data/face/face.names
+backup = /home/sahil/eattendance/darknet/backup/
+
+

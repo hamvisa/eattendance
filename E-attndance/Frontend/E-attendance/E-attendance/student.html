@@ -1,0 +1,49 @@
+<html>
+     <head>
+        <title>E-attendance</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left-container maroon">
+                <img src="img/profile/default.png" id="profilepic">
+                <h1 id="name">Student name</h1>
+                <div id="info">
+                    <label>Department: Computer Engineering</label>
+                    <br>
+                    <label>Year: LYBTech</label>
+                    <br>
+                    <span style="float: left"><label>Div: B</label></span>
+                    <span style="float: right;margin-right:5%;"><label>Batch: B2</label></span>
+                    <br>
+                    <label>Roll no.: 1234567</label>
+                </div>
+            </div>
+            <div class="right-container">
+                <h1 id="colheader" class="maroontext">K.J.Somaiya College of Engineering</h1>
+                <table class="buttontable">
+                    <tr>
+                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('attendancediv').innerHTML;">View attendance</button></td>
+                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('grievances').innerHTML;">Grievances</button></td>
+                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('pics').innerHTML;">View pictures</button></td>
+                    </tr>
+                </table>
+                <div id="profcontent" style="position: relative;height: auto;width: 100%;"></div>
+            </div>
+            <div id="attendancediv" style="visibility: hidden;">
+                <table class="attendancetable">
+                    <tr>
+                        <td>Name of the student</td>
+                        <td>Attendance</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="grievances">This is grievances section</div>
+            <div id="pics">This is pictures section</div>
+        </div>
+    </body>
+ </html>

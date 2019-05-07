@@ -1,0 +1,6 @@
+classes= 20
+train  = /home/sahil/darknet/train.txt
+valid  = /home/sahil/darknet/2007_test.txt
+names = data/voc.names
+backup = backup
+

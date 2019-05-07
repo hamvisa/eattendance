@@ -1,0 +1,299 @@
+<html>
+    <head>
+        <title>E-attendance</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="curtain">
+          <div class="curtain__wrapper" id="curtainbox">
+               <input type="checkbox" checked onchange="toggleCheckbox(this)" id="checked">
+               <div class="curtain__panel curtain__panel--left" >
+                 <img src="img/curtain/Somaiya1.jpg" class="curtainimage" style="height:100%;width: 100%;position: absolute;">
+                 <h1 class="glow"style="position: relative;font-weight: bolder;">Click to&nbsp;</h1>
+               </div>
+               <div class="curtain__content">
+                   <div class="upbar maroon">
+                      <img id="logo" src="img/home/kjscelogo.png">
+                      <h1 id="collegeheader">K.J.Somaiya College of Engineering</h1>
+                      <div class="topnav" id="topnavbar">
+                         <a class="nav-link active" href="#home" onclick="document.getElementById('innercontent').innerHTML=document.getElementById('HomeHTML').innerHTML;">Home</a>
+                         <a href="#news" class="nav-link" onclick="document.getElementById('innercontent').innerHTML=document.getElementById('AboutMeHTML').innerHTML;">About us</a>
+                         <a href="#contact"class="nav-link" onclick="document.getElementById('innercontent').innerHTML=document.getElementById('ContactHTML').innerHTML;">Contact</a>
+                     </div>
+                     <a href="#login" id="login" >Login</a>
+                  </div>
+                   <div id="innercontent" style="position: relative;height: auto;width: 100%;"></div>
+                   <div class="footer maroon">
+                       <div class="footerup">
+                           <p>Get connected with us on social networks</p>
+                            <ol id="footerlist">
+                                <li class="youtube"><a title="Youtube" ><i class="fa fa-youtube"></i></a></li>
+                                 <li class="instagram"><a title="Instagram" ><i class="fa fa-instagram"></i></a></li>
+                                 <li class="googleplus"><a title="Google Plus" ><i class="fa fa-google-plus"></i></a></li>
+                                <li class="twitter"><a title="Twitter" ><i class="fa fa-twitter"></i></a></li>
+                               <li class="facebook" ><a title="Facebook" ><i class="fa fa-facebook" ></i></a></li>    
+                           </ol>
+                       </div>
+                       <div class="footerbottom maroon">
+                           <p>© 2018-19 KJSCE, All Rights Reserved.
+                           <br>Developed by SAP technologies.</p>
+                       </div>
+                   </div>
+              </div>
+     
+    
+    <div class="curtain__panel curtain__panel--right">
+      <img src="img/curtain/Somaiya2.jpg" style="height:100%;width: 100%;position: absolute;">
+      <h1 class="glow" style="position: relative;font-weight: bolder;">continue...&nbsp;</h1>
+    </div> 
+    
+  </div>
+<div class="slideshow-container" id="HomeHTML">
+
+<div class="mySlides fade">
+  <img src="img/slideshow/img1.jpg" style="width:100%">
+</div>
+
+<div class="mySlides fade">
+  <img src="img/slideshow/img2.jpg" style="width:100%">
+</div>
+
+<div class="mySlides fade">
+  <img src="img/slideshow/img3.JPG" style="width:100%">
+</div>
+    
+<div class="mySlides fade">
+  <img src="img/slideshow/img4.jpg" style="width:100%">
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+<br>
+
+<div style="text-align:center" class="dots">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+  <span class="dot" onclick="currentSlide(4)"></span> 
+</div>
+</div>
+            
+<div id="AboutMeHTML" style="visibility:hidden;color: black;height: auto;position: relative;">   
+<p class="marquee maroontext">
+  <span>KJSCE has been Awarded 'A' Grade by The "NATIONAL ASSESSMENT AND ACCREDITATION COUNCIL" (NAAC) From May 2017.</span>
+  <span>NIRF 2018 Ranked by MHRD.</span>
+  <span>Gold Status in CII Survey 2017.</span>
+</p>
+   
+<div style="height: auto;width:100%;margin: 5%;">
+    <center><img src="img/aboutus/Somaiya.jpg" style="width:60%;height: 25vw;text-align: center;margin: 0;padding: 0;margin-bottom: 2%;border:2px solid black;"></center>
+    <div style="position: relative;height: auto;color:black;width:90%;left: 0;margin-bottom: 2%;font-size: 20px;text-align:justify;">
+        <p>
+            The K. J. Somaiya College of Engineering (KJSCE) was established in 1983 at Somaiya Vidyavihar, and affiliated with the University of Mumbai. It offers 4 year bachelors degree courses in the departments of Electronics Engineering, Electronics and Telecommunications Engineering, Computer Engineering, Information Technology and Mechanical Engineering. KJSCE is an Autonomous college affiliated to the University of Mumbai spread across approx. 65 acres of posh land and stands among 3 engineering colleges in Mumbai. It is also one of the only 3 autonomous colleges in Mumbai the others being VJTI and SP. It also offers masters course in some these branches.
+        </p>
+    </div>
+    <hr>
+    <img src="img/aboutus/principal.jpg" style="position: relative;height: 300px;width:400px;border: 2px solid black;float: left;margin-right: 2%;margin-bottom: 1%;">
+    <div style="position: relative;height: auto;color:black;width:90%;left: 0;margin-bottom: 2%;font-size: 20px;text-align:justify;">
+        <h3 class="maroontext">From Principal's Desk</h3>
+        <p>
+            "Whatever you do in word or in deed, do all in the name of the Lord, giving thanks to Him" –was the ethos of life of our founder late Padma Bhushan Karamshibhai Jethabhai (K. J.) Somaiya. His pioneering efforts and hard work not only revolutionized the sugar industries but his balanced perspective and the social bent of mind enabled him in furthering his dream of shaping young minds through quality education. Shri K. J. Somaiya laid the foundation for Somaiya Vidyavihar Trust in 1959, which then established the K. J. Somaiya College of Engineering (KJSCE) in 1983.
+        </p>
+        <p>
+            In pursuit of commitment towards Quality in Technical Education, KJSCE had its first accreditation by the National Board of Accreditation (NBA), New Delhi way back in 1998 which subsequently was then reaccredited a couple of more times. During the last accreditation held in 2013, all the 5 UG programmes were provisionally accredited for 2 years (upto 2015).   
+            <span style="font-weight: bold;">KJSCE has been Awarded 'A' Grade by The "NATIONAL ASSESSMENT AND ACCREDITATION COUNCIL" (NAAC) From May 2017.</span>
+        </p>
+        <p>
+            Till today, KJSCE is the only Self-financed (Private) Engineering College affiliated to University of Mumbai which has been conferred Autonomous Status in the year academic 2014-15. Students admitted in this year are governed by the new scheme / curriculums designed under autonomy and are eligible to get a B. Tech & M. Tech degree after completion of their course of enrolment.
+        </p>
+        <p>
+            The flexibility in the academic calendar by way of autonomy, however, was made available to all those students who were a part of the College during the academic year 2014-15. This made it possible for them to plan their activities beyond college engagements; to pursue hobbies, interests, explore career options, take up interesting internships etc. which otherwise was lying  beyond the ambit of technology education. They now could learn courses which could help them in strengthening their careers, make them globally competent, etc.
+        </p>
+        <p>
+            As a part of the continuous evaluation in each course, a variety of tools and techniques are now adopted to evaluate understanding and knowledge of a student. Necessary feedback is given to a student by making the evaluation and assessment fully transparent. The students are encouraged to discuss and understand their shortcomings which in turn helps them in becoming professional engineers of tomorrow.
+        </p>
+        <p>
+            Understanding the fact that lessons in engineering cannot be confined to only classroom teaching, the education in our College has always tried to reach beyond the curriculum. Not only our students are supported to participate in technology driven projects at national as well as international level to achieve a global outlook, entrepreneurial approach through innovative ideas is given a lot of encouragement. A large number of students are inspired for participating in activities which relate to the issues and needs of society. All these efforts of the College work towards making the graduating student a responsible member of society.
+        </p>
+        <p>
+            Thus, with the backing of a progressive management, requisite infrastructure, committed staff and versatile students, it is not a surprise to see that KJSCE is one of the most sought after colleges in the University of Mumbai!!"
+        </p>
+        <p class="maroontext"style="font-size: 20px;font-weight: bold">
+            Principal<br>
+            Dr. Shubha Pandit
+        </p>
+    </div>
+    <hr>
+    <div style="position: relative;height: auto;color:black;width:60%;left: 0;margin-bottom: 2%;font-size: 20px;text-align:justify;float: left;">
+        <h3 class="maroontext" style="margin: 0">Project Guide</h3>
+         <p>
+             "Prof. Sheetal pereira has been working as a Professor in the department of Computer Engineering in Somaiya Engineering College since 26th July January 2006. She has completed her M.E (Computer Engineering)  from K.J.Somaiya College of Engineering, Vidyavihar.
+         </p>
+         <p>
+             She has taught a variety of subjects like Advanced Microprocessors, Computer Organization and Architecture, Computer Programming I, Computer Programming II, Computer Graphics, Discrete Structures, System Programming, Web Engineering, Analysis of Algorithms, Web Technology, Data Structures. Till date, she has attended many conferences and seminars as well as actively participated in different international publications.
+         </p>
+         <p>
+             Therfore, we would owe our deep gratitude to our project guide for taking a keen interest in our project and guiding us all along by providing all the necessary information for developing a good system."
+         </p>
+    </div>
+        <img src="img/aboutus/projectguide.jpg" style="position: relative;height: 25vw;width:20vw;border: 2px solid black;margin-left: 2%;margin-bottom: 1%;left: 2%;top:2%;">
+    <hr>
+     <div style="position: relative;height: auto;color:black;width:60%;left: 0;margin-bottom: 2%;font-size: 20px;text-align:justify;float: left;">
+     <h3 class="maroontext" style="margin: 0">Project Developers</h3>
+    </div>
+    <table id="developertable">
+        <tr>
+            <td><img class="developers" src="img/aboutus/sahil.jpg"><h5 class="developername">Sahil Maniar</h5></td>
+            <td><img class="developers" src="img/aboutus/pooja.jpg"><h5 class="developername">Pooja Pache</h5></td>
+            <td><img class="developers" src="img/aboutus/aditya.jpg"><h5 class="developername">Aditya Ladage</h5></td>
+        </tr>
+    </table>
+</div>
+</div>
+
+<div id="ContactHTML" style="visibility:hidden;color: black;">
+    <center><img src="img/contact/somaiyavidyavihar.jpg" style="width: 80%;border: 2px solid black;height:20vw;margin:2%"></center>
+    <center>
+        <table style="width:80%;margin:2%;height: auto;text-align: center;">
+            <tr>
+                <td> <div style="height: 20vw;width:40vw;border: 2px solid black;" id="map"></div></td>
+                <td style="vertical-align: top;"> <p style="color: black;position: relative;font-size: 20px;text-align: left;margin: 3%;font-weight: bold;line-height: 1.5">Address: Vidyanagar, Vidya Vihar East, Ghatkopar East, Mumbai, Maharashtra 400077.<br>Contact: 91-22-66449191<br>Fax: 91-22-21025272<br>Website: <a>www.somaiya.edu/vidyavihar/kjsce/</a><br>Email: <a>enquiry@engg.somaiya.edu</a></p>
+                </td>
+            </tr>
+        </table>
+    </center>
+            </div>
+   
+</div> 
+        
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+    </div>
+    <!-- login -->
+    <div class="modal-body">
+      <form action="" id="loginform">
+        <table id="logintable" class="maroontext">
+            <tr>
+                <td><label>Username</label></td>
+                <td><input type="text" placeholder="Enter email address"></td>
+            </tr>
+             <tr>
+                <td><label>Password</label></td>
+                <td><input type="password" placeholder="********"></td>
+            </tr>
+            <tr>
+                <td><a id="forgotpassword">Forgot password?</a></td>
+                <td><button id="loginbtn" class="maroon">Login</button></td>
+            </tr>
+        </table>  
+      </form>
+    </div>
+  </div>
+
+</div>
+        
+        
+        
+        
+        
+<script>
+
+//On loading the home page div replacement
+$(document).ready(function(){
+    document.getElementById('innercontent').innerHTML=document.getElementById('HomeHTML').innerHTML;
+});
+
+// Navigation bar handling
+var header = document.getElementById("topnavbar");
+var btns = header.getElementsByClassName("nav-link");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
+
+//For Modal
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("login");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+//For curtain effect
+var s=false;
+function toggleCheckbox(element)
+ {
+     if(!element.checked)
+         {
+             s=true;
+             element.disabled=true;
+             document.body.style.overflow="auto";
+         }
+     if(!element.checked && s)
+         {
+     document.getElementById("curtainbox").style.zIndex = "-100";
+     document.getElementById("checked").style.zIndex = "-100";
+         }
+ }
+    
+    
+//Slideshow
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length/2) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length/2; alert(dots.length);}
+  for (i = 0; i < slides.length/2; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length/2; i++) {
+      dots[i].className = dots[i].className.replace(" activedot", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " activedot";
+}
+    
+//    MAP
+    function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 19.0728996, lng: 72.8986741};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 18, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+        </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcB8leSDWALQqHbodJWD3kBJMXG3gDaN4&callback=initMap">
+    </script>
+    </body>
+</html>
+
+

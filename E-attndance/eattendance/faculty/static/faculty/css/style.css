@@ -1,0 +1,738 @@
+
+html
+{  position: relative;
+    width:100%;
+    height:auto;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body
+{
+    position: relative;
+    width:auto;
+    height:auto;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.maroon
+{
+    background-color: #800000;
+}
+.maroontext
+{
+    color: #800000;
+}
+.upbar
+{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+#logo
+{
+    height: 100px;
+    width: 100px;
+    margin: 1%;
+}
+#collegeheader
+{
+    position: absolute;
+    top: 0;
+    text-align: center;
+    left: 35%;
+    font-family: Broadway, Castellar, sans-serif;
+}
+.topnav {
+  overflow: hidden;
+  background-color: inherit;
+  position: absolute;
+  display: inline;
+  bottom: 0;
+  text-align: center;
+  margin-bottom: 0.5%;
+  width: 30%;
+}
+
+.topnav a {
+  position: relative;
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 1.5vw;
+  border-bottom: 3px solid transparent;
+  margin: 5px;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid white;
+  cursor: pointer;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid white;
+  cursor: pointer;
+}
+
+#login
+{
+    position: absolute;
+    display: inline;
+    bottom: 0; 
+    right:2%;
+    margin-bottom: 0.5%;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.5vw;
+}
+
+.upbar #login:hover
+{
+    color: black;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+
+/*
+
+Curtain
+*/
+
+.curtain {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.curtain__wrapper {
+  width: 100%;
+  height: 100%;
+}
+.curtain__wrapper input[type=checkbox] {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+.curtain__wrapper input[type=checkbox]:checked ~ div.curtain__panel--left {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+.curtain__wrapper input[type=checkbox]:checked ~ div.curtain__panel--right {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+.curtain__panel {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  float: left;
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  transition: all 1s ease-out;
+  z-index: 2;
+  object-fit: cover;
+}
+.curtain__panel--left {
+  justify-content: flex-end;
+  -webkit-transform: translateX(-120%);
+          transform: translateX(-120%);
+}
+.curtain__panel--right {
+    overflow: hidden;
+  justify-content: flex-start;
+  -webkit-transform: translateX(120%);
+          transform: translateX(120%);
+}
+
+.curtain__content {
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+
+
+.glow {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #800000, 0 0 40px #800000, 0 0 50px #e60073, 0 0 60px #800000, 0 0 70px #800000;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #9a0000, 0 0 40px #9a0000, 0 0 50px #9a0000, 0 0 60px #9a0000, 0 0 70px #9a0000, 0 0 80px #9a0000;
+  }
+}
+
+
+
+/*Modal*/
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  position: relative;
+  top:10%;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  top:4%;
+  right: 2%;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color:#800000 ;
+  color: white;
+  text-align: center;
+}
+
+.modal-body {
+    position: relative;
+    padding: 2px 16px;
+    text-align: center;
+    width: 90%;
+}
+
+/*Loginform*/
+
+.modal-content .modal-body #loginform #logintable
+{
+    position: relative;
+    font-size: 20px;
+     font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin-top: 5%;
+    padding: 0;
+}
+.modal-content .modal-body #loginform #logintable input[type=text]
+{
+    font-size: 15px;
+    height: 20px;
+    width: 80%;
+}
+.modal-content .modal-body #loginform #logintable input[type=password]
+{
+    font-size: 15px;
+    height: 20px;
+    width: 80%;
+}
+.modal-content .modal-body #loginform #logintable tr td
+{
+    padding: 5px 20px;
+}
+
+.modal-content .modal-body #loginform #logintable tr td #forgotpassword
+{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 2%;
+}
+
+#forgotpassword:hover,#forgotpassword:active{
+    background-color: rgba(128,0,0,0.28);
+    
+}
+.modal-content .modal-body #loginform #logintable tr td #loginbtn
+{
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 2%;
+    margin: 1%;
+    width: 150px;
+}
+
+.modal-content .modal-body #loginform #logintable tr td #loginbtn:hover,.modal-content .modal-body #loginform #logintable tr td #loginbtn:active
+{
+    color: black;
+    border: 2px solid black;
+}
+
+
+
+
+
+.mySlides {display: none; margin: 0;
+  padding:0;}
+
+
+/* Slideshow container */
+.slideshow-container {
+  height:auto;
+  width: auto;
+  position:relative;
+  margin: 0;
+  padding:0;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease; 
+}
+
+.activedot, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+img
+{
+vertical-align: middle;
+height:500px;
+width:100%;
+z-index:-1;
+}
+.dots
+{
+
+cursor: pointer;
+ position: absolute;
+ bottom: 10%;
+left:45%;
+
+}
+
+
+
+.marquee {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.marquee span {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  left: 100%;
+  animation: marquee 30s linear infinite;
+}
+.marquee:hover span {
+  animation-play-state: paused;
+}
+
+.marquee span:nth-child(1) {
+  animation-delay: 1s;
+}
+.marquee span:nth-child(2) {
+  animation-delay: 3s;
+}
+.marquee span:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes marquee {
+  0%   { left: 100%; }
+  100% { left: -100%; }
+}
+hr { 
+  display: block;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  border-style: inset;
+  border-width: 1px;
+  width: 90%;
+  text-align: center;
+} 
+
+#developertable
+{
+    position: relative;
+    width: 90%;
+    margin-left: 0;
+    text-align: center;
+}
+#developertable tr td
+{
+    text-align: center;
+}
+#developertable tr td .developers    
+{
+    border:2px solid black;
+    height:20vw;
+    width:20vw;
+    margin:20px;
+    object-fit: cover;
+}
+
+#developertable tr td .developername
+{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    
+}
+
+
+
+
+
+
+/*
+
+FOOTER
+*/
+.footer
+{
+    position: absolute;
+    width:100%;
+    height: auto;
+    margin: 0;
+    padding:0;
+}
+.footer .footerup
+{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    margin: 0;
+    padding:0;
+    width: 100%;
+    height: auto;
+}
+.footer .footerup p
+{
+    float:left;
+    width: auto;
+    position: relative;
+    margin-top:1.5%;
+    padding: 8px 16px;
+}
+.footer .footerup #footerlist
+{
+    width: auto;
+    height: auto;
+    float: right;
+    list-style-type: none;
+    overflow: hidden;
+    position: relative;
+    background: transparent;
+    display: inline;
+    margin-top:1.5%;
+    padding: 0;
+    right: 5%;
+}
+.footer .footerup #footerlist li
+{
+    display:inline;
+    padding: 8px 16px;
+    text-align: center;
+    float: right;
+}
+.footer .footerup #footerlist li a
+{
+    display:inline-block;
+    font-size: 20px;
+    color:white; 
+    text-decoration: none;
+    margin: 0;
+    cursor: pointer;
+}
+.footer .footerup #footerlist li a i
+{
+    font-size:20px;
+    color:white;
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+li.facebook:hover,li.facebook:active
+{
+    background-color: #3b5998;
+}
+
+li.twitter:hover,li.twitter:active
+{
+    background-color: #00ACEE;
+}
+li.googleplus:hover,li.googleplus:active
+{
+    background-color: #d34836;
+}
+li.instagram:hover,li.instagram:active
+{
+    background-color: #8a3ab9;
+}
+li.youtube:hover,li.youtube:active
+{
+    background-color: #ff0000;
+}
+
+.footer .footerbottom
+{
+    height: auto;
+    width: 100%;
+    height: auto;
+    font-size:15px;
+    position: relative;
+    top: 60px;
+    text-align: center;
+   
+}
+
+.footer .footerbottom p
+{
+    
+    width: auto;
+    position: relative;
+    padding: 10px 20px;
+    line-height: 1.5;
+}
+
+.container
+{
+    position: relative;
+    width: 90%;
+    margin: 5%;
+    top: 2%;
+    bottom:2%;
+    height: 80%;
+      box-shadow: 5px 10px #888888;
+}
+
+.container .left-container
+{
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 30%;
+}
+.container .right-container
+{
+    float: right;
+    height: 100%;
+    width: 70%;
+    text-align: center;
+}
+
+.container #profilepic
+{
+    position: relative;
+    margin-top:15%;
+    margin-left:25%;
+    text-align: center;
+    object-fit: cover;
+    height: 15vw;
+    width: 15vw; 
+    z-index: 1;
+}
+.container #name
+{
+    font-size: 2vw;
+    font-weight: bolder;
+     margin-top:5%;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+.container #info
+{
+    position: relative;
+    font-size: 1vw;
+    font-weight: bold;
+    margin-top:2%;
+    margin-left:5%;  
+    margin-right:5%;  
+    width: 90%;
+    color: white;
+    line-height: 1.5;
+}
+
+.container .colheader
+{
+    font-size: 2vw;
+    font-weight: bolder;
+    margin-top:5%;
+    text-align: center;
+    width: 100%;
+    color: white;
+    z-index: 1;
+}
+.container .buttontable
+{
+    
+    text-align: center;
+    width: 80%;
+    margin: 2% 5%;
+    padding: 1%;
+    height: auto;
+}
+.container .buttontable .profbuttons
+{
+    width:15vw;
+    height: 4vw;
+    font-size: 1vw;
+    color:white;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.container .buttontable .profbuttons:hover
+{
+    color: black;
+    border: 2px solid black;
+}
+.container #profcontent
+{
+   position: relative;
+    height: 10vw;
+    width: 100%;
+    z-index: 100;
+  
+}
+.container #attendancediv
+{
+    width: 80%;
+    height: 10vw;
+   
+}
+.container .attendancetable
+{
+    color: black;
+    border: 1px solid black;
+    font-size: 20px;
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 2% 5%;
+}
+
+.container .attendancetable tr,.container .attendancetable td
+{
+    border: 1px solid black;
+}

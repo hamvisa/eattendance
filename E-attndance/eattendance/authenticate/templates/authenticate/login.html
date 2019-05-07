@@ -1,0 +1,12 @@
+{% extends 'authenticate/base.html' %}
+{% block title %}
+E-attendance: {{type}} Login
+{% endblock %}
+{% block form %}
+<h1>{{type}} Login</h1>
+<form action="{% url 'authenticate:login' type %}" method="POST">
+        {% csrf_token %}
+        {{form.as_ul}}
+        <input type="submit" value="Login"/>
+</form>
+{% endblock %}
