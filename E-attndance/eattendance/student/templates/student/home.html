@@ -28,8 +28,7 @@
                 <table class="buttontable">
                     <tr>
                         <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('attendancediv').innerHTML;">View attendance</button></td>
-                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('grievances').innerHTML;">Grievances</button></td>
-                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('pics').innerHTML;">View pictures</button></td>
+                        
                     </tr>
                 </table>
                 <div id="profcontent" style="position: relative;height: auto;width: 100%;"></div>
@@ -37,14 +36,24 @@
             <div id="attendancediv" style="visibility: hidden;">
                 <table class="attendancetable">
                     <tr>
-                        <td>Name of the student</td>
-                        <td>Attendance</td>
+                        <th>Timestamp</th>
+                        <th>Subject</th>
+                        <th>Present</th>                
                     </tr>
+                    {% if attendance_records %}
+                        {% for record in attendance_records %}
+                        <tr>
+                            <td> {{ record.timestamp }} </td>
+                            <td> {{ record.schedule.subject.initials }} </td>
+                            <td> {{ record.present }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                       <h2>There are no attendance records.</h2>
+                    {% endif %}
                     
                 </table>
             </div>
-            <div id="grievances">This is grievances section</div>
-            <div id="pics">This is pictures section</div>
         </div>
     </body>
  </html>

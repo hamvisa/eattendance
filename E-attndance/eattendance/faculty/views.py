@@ -21,13 +21,17 @@ def home(request):
                 ''' <QuerySet [<Schedule: MON: 11:30:00-12:30:00. COMPS, LY, B, FC by: MMP Sub:DCC>, <Schedule: THU: 14:15:00-15:15:00. COMPS, LY, B, FC by: MMP Sub:DCC>, <Schedule: WED: 11:30:00-12:30:00. COMPS, TY, A, FC b
 y: MMP Sub:DN>]>*/ '''
                 subjects = set()
+                students_attendnce_records = set()
                 for schedule in schedules:
                     subjects.add(schedule.subject)
+                    attendance_records = Attendance.objects.filter(schedule=schedule)
+                    for attendance_record in attendance_records:
+                        students_attendnce_records.add(attendance_record)
                 # subjects contain all subject objects taught by faculty
             except ObjectDoesNotExist:
                 return HttpResponse("Error fetching faculty records for user: " + str(user))
             return render(request=request, template_name='faculty/home.html',
-                          context={'faculty': faculty, 'subjects': subjects, })
+                          context={'faculty': faculty, 'subjects': subjects, 'students_attendance_records' : students_attendnce_records})
 
         else:
             return HttpResponse("User type: " + str(type) + " cannot access Faculty Portal.")

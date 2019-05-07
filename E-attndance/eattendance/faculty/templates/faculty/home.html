@@ -33,9 +33,7 @@
                 <h1 id="colheader" class="maroontext">K.J.Somaiya College of Engineering</h1>
                 <table class="buttontable">
                     <tr>
-                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('attendancediv').innerHTML;">View attendance</button></td>
-                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('grievances').innerHTML;">View Grievances</button></td>
-                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('modify').innerHTML;">Modify</button></td>
+                        <td><button class="profbuttons maroon" onclick="document.getElementById('profcontent').innerHTML=document.getElementById('attendancediv').innerHTML;">View Attendance of Students</button></td>
                     </tr>
                 </table>
                 <div id="profcontent" style="position: relative;height: auto;width: 100%;"></div>
@@ -43,14 +41,22 @@
             <div id="attendancediv" style="visibility: hidden;">
                 <table class="attendancetable">
                     <tr>
-                        <td>Name of the student</td>
-                        <td>Attendance</td>
+                        <th>Timestamp</th>
+                        <th>Student Roll Number</th>
+                        <th>Subject</th>
+                        <th>Present</th>
                     </tr>
+                    {% for student_attendance_record in students_attendance_records %}
+                        <tr>
+                            <td>{{ student_attendance_record.timestamp }}</td>
+                            <td>{{ student_attendance_record.student.person.id }}</td>
+                            <td>{{ student_attendance_record.schedule.subject.initials }}</td>
+                            <td>{{ student_attendance_record.present }}</td>
+                        </tr>
+                    {% endfor %}
                     
                 </table>
             </div>
-            <div id="grievances">This is grievances section</div>
-            <div id="modify">This is modify section</div>
         </div>
     </body>
  </html>

@@ -15,10 +15,11 @@ def home(request):
         if type == 'student':
             try:
                 student = Student.objects.get(pk=user)
+                attendance_records = Attendance.objects.filter(student=student).order_by('-timestamp')
             except ObjectDoesNotExist:
                 return HttpResponse("Error fetching student records for user: " + str(user))
             return render(request=request, template_name='student/home.html',
-                          context={'student': student, })   #To-do when errors are checked for
+                          context={'student': student, 'attendance_records' : attendance_records})   #To-do when errors are checked for
 
         else:
             return HttpResponse("User type: " + str(type) + " cannot access Student Portal.")
