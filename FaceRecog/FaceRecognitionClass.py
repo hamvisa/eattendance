@@ -48,6 +48,7 @@ class FaceRecognition:
     def __init__(self, absolute_database_path):
         self.FRmodel = self.load_FRmodel()
         self.user_db = self.ini_user_database(absolute_path=absolute_database_path)
+        self.absolute_database_path = absolute_database_path
 
     def triplet_loss(self, y_true, y_pred, alpha=0.2):
         anchor, positive, negative = y_pred[0], y_pred[1], y_pred[2]
@@ -92,12 +93,12 @@ class FaceRecognition:
         if name not in user_db:
             user_db[name] = img_to_encoding(img_path, FRmodel)
             # save the database
-            with open('database/user_dict.pickle', 'wb') as handle:
+            with open(self.absolute_database_path, 'wb') as handle:
                 pickle.dump(user_db, handle, protocol=pickle.HIGHEST_PROTOCOL)
             print('User ' + name + ' added successfully')
             return True
         else:
-            print('The name is already registered! Try a different name.........')
+            print('The ID is already registered! Try a different name.........')
             return False
 
     # adds a new user using image taken from webcam
@@ -122,7 +123,7 @@ class FaceRecognition:
         if popped is not None:
             print('User ' + name + ' deleted successfully')
             # save the database
-            with open('database/user_dict.pickle', 'wb') as handle:
+            with open(self.absolute_database_path, 'wb') as handle:
                 pickle.dump(user_db, handle, protocol=pickle.HIGHEST_PROTOCOL)
             return True
         elif popped == None:
@@ -196,51 +197,51 @@ class FaceRecognition:
         status = self.delete_all_users(user_db=self.user_db)
         return status
 
-#     def my_main(self):
-#         FRmodel = self.load_FRmodel()
-#         print('\n\nModel loaded...')
-#
-#         user_db = self.ini_user_database()
-#         print('User database loaded')
-#
-#         ch = 'y'
-#         while (ch == 'y' or ch == 'Y'):
-#             user_input = input(
-#                 '\nEnter choice \n1. Recognize face via image path\n2. Add or Delete user\n3. Quit\n')
-#
-#             if user_input == '1':
-#                 os.system('cls' if os.name == 'nt' else 'clear')
-#                 # we can use the webcam to capture the user image then get it recognized
-#                 img_path = input('Enter Absolute Path to the Face:')
-#                 threshold = float(input('Enter Maximum Affordable Distance:'))
-#                 self.do_face_recognition(user_db, FRmodel, threshold=threshold, save_loc=img_path)
-#
-#             elif user_input == '2':
-#                 os.system('cls' if os.name == 'nt' else 'clear')
-#                 print('1. Add user using saved image path\n2. Delete user\n3. Delete all users.\n')
-#
-#                 add_ch = input()
-#                 name = input('Enter the ID of the person\n')
-#
-#                 if add_ch == '1':
-#                     img_path = input('Enter the face\'s absolute path path:\n')
-#                     self.add_user_img_path(user_db, FRmodel, name, img_path)
-#                 elif add_ch == '2':
-#                     self.delete_user(user_db, name)
-#                 elif add_ch == '3':
-#                     self.delete_all_users(user_db)
-#                 else:
-#                     print('Invalid choice....\n')
-#
-#             elif user_input == '3':
-#                 return
-#
-#             else:
-#                 print('Invalid choice....\nTry again?\n')
-#
-#             ch = input('Continue ? y or n\n')
-#             # clear the screen
-#             os.system('cls' if os.name == 'nt' else 'clear')
-#
+    def my_main(self):
+        FRmodel = self.FRmodel
+        print('\n\nModel loaded...')
+
+        user_db = self.user_db
+        print('User database loaded')
+
+        ch = 'y'
+        while (ch == 'y' or ch == 'Y'):
+            user_input = input(
+                '\nEnter choice \n1. Recognize face via image path\n2. Add or Delete user\n3. Quit\n')
+
+            if user_input == '1':
+                os.system('cls' if os.name == 'nt' else 'clear')
+                # we can use the webcam to capture the user image then get it recognized
+                img_path = input('Enter Absolute Path to the Face:')
+                threshold = float(input('Enter Maximum Affordable Distance:'))
+                self.do_face_recognition(user_db, FRmodel, threshold=threshold, save_loc=img_path)
+
+            elif user_input == '2':
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print('1. Add user using saved image path\n2. Delete user\n3. Delete all users.\n')
+
+                add_ch = input()
+                name = input('Enter the ID of the person\n')
+
+                if add_ch == '1':
+                    img_path = input('Enter the face\'s absolute path path:\n')
+                    self.add_user_img_path(user_db, FRmodel, name, img_path)
+                elif add_ch == '2':
+                    self.delete_user(user_db, name)
+                elif add_ch == '3':
+                    self.delete_all_users(user_db)
+                else:
+                    print('Invalid choice....\n')
+
+            elif user_input == '3':
+                return
+
+            else:
+                print('Invalid choice....\nTry again?\n')
+
+            ch = input('Continue ? y or n\n')
+            # clear the screen
+            os.system('cls' if os.name == 'nt' else 'clear')
+
 # obj = FaceRecognition()
 # obj.my_main()

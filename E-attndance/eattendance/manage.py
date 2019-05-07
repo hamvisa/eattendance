@@ -14,6 +14,7 @@ if __name__ == '__main__':
         ) from exc
     execute_from_command_line(sys.argv)
     from attendance_marking_schedular import EventGenerator
-    EventGenerator.startGeneratingEvents(time_between_event_cycles_in_seconds=300)
+    event_generator = EventGenerator()
+    event_generator.startGeneratingEvents(time_between_event_cycles_in_seconds=300)
 
 

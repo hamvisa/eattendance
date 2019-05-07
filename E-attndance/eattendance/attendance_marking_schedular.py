@@ -16,6 +16,7 @@ class EventGenerator:
 
     def startGeneratingEvents(self, time_between_event_cycles_in_seconds):
         while True:
+            print("Event gererator running")
             scheduler_start_time = t.time()
 
             my_datetime = datetime.datetime.now()

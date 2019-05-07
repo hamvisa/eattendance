@@ -1,5 +1,5 @@
-import darknet.openimages_face_extract as ofe
-face_detector = ofe.FaceDetector()
+from darknet import openimages_face_extract
+face_detector = openimages_face_extract.FaceDetector()
 
 
 def extractFaces(source_path, destination_path):
@@ -9,4 +9,4 @@ def extractFaces(source_path, destination_path):
     except:
         return False, 0
 
-extractFaces("images/sample.jpg", "output/")
+extractFaces("images/1.jpg", "output/")
