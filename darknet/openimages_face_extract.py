@@ -4,9 +4,9 @@ import cv2
 
 class FaceDetector:
     def __init__(self):
-        self.__net = dn.load_net(b"cfg/yolov3-openimages.cfg",
-                                 b"yolov3-openimages.weights", 0)
-        self.__meta = dn.load_meta(b"cfg/openimages.data")
+        self.__net = dn.load_net(b"/home/sahil/eattendance/darknet/cfg/yolov3-openimages.cfg",
+                                 b"/home/sahil/eattendance/darknet/yolov3-openimages.weights", 0)
+        self.__meta = dn.load_meta(b"/home/sahil/eattendance/darknet/cfg/openimages.data")
 
     def detectFaces(self, sourceImagePath, destinationWritePath, startingIndex=0):  # takes image from source path, writes images of only faces to destination path. returns number of faces.
         '''

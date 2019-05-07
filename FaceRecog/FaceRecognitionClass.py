@@ -27,7 +27,7 @@ import numpy as np
 from numpy import genfromtxt
 import pandas as pd
 import tensorflow as tf
-from utility import *
+from FaceRecog.utility import * #changed
 
 # from webcam_utility import *
 np.set_printoptions(threshold=np.nan)
@@ -71,7 +71,7 @@ class FaceRecognition:
     # - A matrix of shape **(m, 128)** where the 128 numbers are the encoding values for $ith$ image.
     # load the model
     def load_FRmodel(self):
-        FRmodel = load_model('models/model.h5', custom_objects={'triplet_loss': self.triplet_loss})
+        FRmodel = load_model('/home/sahil/eattendance/FaceRecog/models/model.h5', custom_objects={'triplet_loss': self.triplet_loss})
         return FRmodel
 
     # We will create a database of registered. For this we will use a simple dictionary and map each registered user with his/her face encoding.

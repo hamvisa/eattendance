@@ -1,48 +1,10 @@
-"""
 from database.models import *
-import datetime
-import time as t
 import urllib.request as urlreq
 import os
 from FaceRecog.FaceRecognitionClass import FaceRecognition
-from darknet.openimages_face_extract import FaceDetector
 from django.shortcuts import get_object_or_404
-
-class EventGenerator:
-    event_processor = None
-
-    def __init__(self):
-        self.event_processor = EventProcessor()
-        self.face_detector = FaceDetector()
-
-    def startGeneratingEvents(self, time_between_event_cycles_in_seconds):
-        while True:
-            print("Event gererator running")
-            scheduler_start_time = t.time()
-
-            my_datetime = datetime.datetime.now()
-            date = my_datetime.date()
-            time = my_datetime.time()
-            number_day = my_datetime.weekday()
-            # weekday(...)
-            #     Return the day of the week represented by the date.
-            #     Monday == 0 ... Sunday == 6
-            days = ['MON', 'TUES', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
-            day = days[number_day]
-
-            schedules_falling_in_current_time = Schedule.objects.filter(day=day, beginning_time__lte=time,
-                                                                        ending_time__gte=time)
-
-            for schedule in schedules_falling_in_current_time:
-                self.event_processor.startProcessing(schedule=schedule, face_detector=self.face_detector)
-
-            scheduler_end_time = t.time()
-            time_elapsed = scheduler_end_time - scheduler_start_time
-
-
-            if time_elapsed < time_between_event_cycles_in_seconds:  # 5 minutes converted into seconds, keeping 5 mnutes as the interval between two consecutive scans
-                t.sleep(time_between_event_cycles_in_seconds - time_elapsed)  # whatever time left from 5 minutes, sleep for that time before the scheduler runs again to create events
-
+import datetime
+from dateutil import tz
 
 class EventProcessor:
     temp_storage_root = None
@@ -80,7 +42,7 @@ class EventProcessor:
         for directory_content in directory_contents:
             item_path = os.path.join(self.temp_storage_root+"captures/", directory_content)
             if(os.path.isfile(item_path)):
-                counter = face_detector.detectFaces(sourceImagePath=item_path, destinationWritePath=self.temp_storage_root+"faces/", starting_index=counter)
+                counter = face_detector.detectFaces(sourceImagePath=item_path, destinationWritePath=self.temp_storage_root+"faces/", startingIndex=counter)
             else:
                 print("A non-file content found in: "+self.temp_storage_root+"captures/ . The non-file is named: "+ directory_content)
         #Face Detection Ends, Faces written at temp_storage_root/faces/
@@ -99,7 +61,7 @@ class EventProcessor:
 
 
         #Putting all together
-        pickle_path = root_path+department_subpath+"/"+year_subpath+"/"+division_subpath+"/"+batch_subpath #this is the folder path in which the appropriate .pickle file will be found
+        pickle_path = root_path+department_subpath+"/"+year_subpath+"/"+division_subpath+"/"+batch_subpath+"user_dict.pickle" #this is the folder path in which the appropriate .pickle file will be found
 
         #Face Recognition
         identified_students = set()
@@ -119,39 +81,67 @@ class EventProcessor:
                 print(
                     "A non-file content found in: " + self.temp_storage_root + "faces/ . The non-file is named: " + directory_content)
         #all the identified students ID (primary key of Student) is now stored in identified_students set.
-
+        print("Identified Students: ")
+        print(identified_students)
         #Add attendance for students who were detected as present
         for student_identity in identified_students:
             person = get_object_or_404(Person, id=student_identity)
             student = get_object_or_404(Student, person=person)
             present=True
             #schedule already provided in function call
+            latest_attendance_records_for_this_student_schedule_pair = Attendance.objects.filter(schedule=schedule, student=student)
+            if len(latest_attendance_records_for_this_student_schedule_pair) != 0:
+                latest_attendance_record_for_this_student_schedule_pair = latest_attendance_records_for_this_student_schedule_pair.order_by('-timestamp')[0]
+                then = latest_attendance_record_for_this_student_schedule_pair.timestamp.replace(tzinfo=tz.gettz('UTC')).astimezone(tz.gettz('Asia/Kolkata'))
+                now = datetime.datetime.now().replace(tzinfo=tz.gettz('Asia/Kolkata'))
+                #Have converted both the datetimes in th same Asia/Kolkata format
 
-            attendance = Attendance(schedule=schedule, student=student, present=True)
-            attendance.save()
+                if (now-then).seconds < 7200: #Record updated within 2 hours, implying same lecture's attendance.
+                    latest_attendance_record_for_this_student_schedule_pair.present = True
+                    latest_attendance_record_for_this_student_schedule_pair.save()
+                else:
+                    attendance = Attendance(schedule=schedule, student=student, present=True)
+                    attendance.save()
+                # as student is detected, he is present. If for this lecture, there exists a student record already, update it to present=true (irrespective of previous value)
+                # if no student record exists already, make a new one
+            else:
+                attendance = Attendance(schedule=schedule, student=student, present=True)
+                attendance.save()
         #Marked all detected students as present
 
         #get remaining students and mark them as absent
 
         #whether or not to apply batch filter
         if batch=='FC':
-            unidentified_students = Student.objects.filter(department=department, year=year, division=division, )
+            all_corresponding_students = Student.objects.filter(department=department, year=year, division=division, )
         else:
-            unidentified_students = Student.objects.filter(department=department, year=year, division=division, batch=batch)
+            all_corresponding_students = Student.objects.filter(department=department, year=year, division=division, batch=batch)
+
+        all_students = set()
+        for corresponding_student in all_corresponding_students:
+            all_students.add(corresponding_student)
+        unidentified_students = all_students - identified_students
         #got the remaining students
 
         #now mark them absent
         for unidentified_student in unidentified_students:
-            attendance = Attendance(schedule=schedule, student=student, present=False)
-            attendance.save()
 
-        #all students are marked as per the face recognition
+            latest_attendance_records_for_this_student_schedule_pair = Attendance.objects.filter(schedule=schedule,
+                                                                                                 student=unidentified_student)
+            if len(latest_attendance_records_for_this_student_schedule_pair) != 0:
+                latest_attendance_record_for_this_student_schedule_pair = latest_attendance_records_for_this_student_schedule_pair.order_by('-timestamp')[0]
+                then = latest_attendance_record_for_this_student_schedule_pair.timestamp.replace(
+                    tzinfo=tz.gettz('UTC')).astimezone(tz.gettz('Asia/Kolkata'))
+                now = datetime.datetime.now().replace(tzinfo=tz.gettz('Asia/Kolkata'))
+                # Have converted both the datetimes in th same Asia/Kolkata format
 
-event_generator = EventGenerator()
-event_generator.startGeneratingEvents(time_between_event_cycles_in_seconds=300)
-"""
-
-from EventGenerator import *
-event_generator = EventGenerator()
-event_generator.startGeneratingEvents(time_between_event_cycles_in_seconds=30)
-
+                if (now - then).seconds < 7200:  # Record updated within 2 hours, implying same lecture's attendance.
+                    pass
+                else:
+                    attendance = Attendance(schedule=schedule, student=unidentified_student, present=False)
+                    attendance.save()
+                # as student is detected, he is present. If for this lecture, there exists a student record already, update it to present=true (irrespective of previous value)
+                # if no student record exists already, make a new one
+            else:
+                attendance = Attendance(schedule=schedule, student=unidentified_student, present=False)
+                attendance.save()
