@@ -153,5 +153,5 @@ event_generator.startGeneratingEvents(time_between_event_cycles_in_seconds=300)
 
 from EventGenerator import *
 event_generator = EventGenerator()
-event_generator.startGeneratingEvents(time_between_event_cycles_in_seconds=30)
+event_generator.startGeneratingEvents(time_between_event_cycles_in_seconds=0)
 

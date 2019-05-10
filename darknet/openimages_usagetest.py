@@ -9,4 +9,6 @@ def extractFaces(source_path, destination_path):
     except:
         return False, 0
 
-extractFaces("images/1.jpg", "output/")
+path = input("Enter absolute path of the image")
+#extractFaces("images/1.jpg", "output/")
+extractFaces(path, "output/")
